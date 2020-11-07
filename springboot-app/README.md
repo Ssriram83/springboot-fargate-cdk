@@ -1,15 +1,18 @@
 # springgroot-note
 
+## Source code
+
+The code is maintained in git. 
+`git status`
+
+You can use workflows like git flow to 
+![](https://wac-cdn.atlassian.com/dam/jcr:2bef0bef-22bc-4485-94b9-a9422f70f11c/02%20(2).svg?cdnVersion=1320)
+
 ## local build and run
 ```
 docker build -t spjpa .
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=password -d mysql:5.7
-# need to run:
-docker run -ti --link mysql:mysql mysql:5.7 bash
-# and create a db
-# CREATE database notes_app
-
-docker run -ti --link mysql:mysql -e mysqlpassword=password -e springdatasourceurl='jdbc:mysql://mysql:3306/notes_app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false' -e springdatasourceusername=root -p 8080:8080 spjpa
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=notes_app -d mysql:5.7
+docker run -ti --link mysql:mysql -e mysqlpassword=password -e springdatasourceurl=jdbc:mysql://mysql:3306/notes_app -e springdatasourceusername=root -p 8080:8080 spjpa
 ```
 
 ### test:
